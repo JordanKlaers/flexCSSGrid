@@ -1,14 +1,18 @@
 <template>
 	<div id="app" class="m">
+		<div class="container p-lft-30 p-rgt-30">
+			<flex-row></flex-row>
+		</div>
 	</div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import { getCountriesAll } from '_store_/actions.js';
+import FlexRow from './components/flex/FlexRow';
 export default {
 	name: 'app',
 	components: {
+		'flex-row': FlexRow
 	},
 	data() {
 		return {
@@ -28,6 +32,9 @@ export default {
 @import '~_scss_/app';
 #app {
 	background-color: $LightModeBackground;
+	.container {
+		display: flex;
+	}
 }
 </style>
 <style type='text/css'>
