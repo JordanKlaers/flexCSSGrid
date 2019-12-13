@@ -9,7 +9,7 @@ function resolve (dir) {
 
 module.exports = {
 	entry: {
-		app: './src/main.js',
+		app: ['babel-polyfill', './src/main.js']
 	},
 	devtool: 'inline-source-map',
 	devServer: {
@@ -22,7 +22,8 @@ module.exports = {
 			'_scss_': resolve('./src/assets/scss'),
 			'_icomoon_': resolve('./src/assets/icomoon'),
 			'_images_': resolve('./src/assets/image/'),
-			'_store_': resolve('./src/store')
+			'_store_': resolve('./src/store'),
+			'_mixins_': resolve('./src/components/mixins/')
 		}
 	},
 	// optimization: {
@@ -65,6 +66,11 @@ module.exports = {
 			{
 				test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
 				loader: 'url-loader?limit=100000'
+			},
+			{
+				test: /\.(js)$/,
+				exclude: /node_modules/,
+				use: ['babel-loader']
 			}
 		]
 	},

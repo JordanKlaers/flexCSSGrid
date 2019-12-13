@@ -1,7 +1,9 @@
 <template>
 	<div id="app" class="m">
 		<div class="container p-lft-30 p-rgt-30">
+			<simple-ie-grid></simple-ie-grid>
 			<flex-row></flex-row>
+			<css-grid-wrap></css-grid-wrap>
 		</div>
 	</div>
 </template>
@@ -9,10 +11,14 @@
 <script>
 import { mapGetters } from 'vuex';
 import FlexRow from './components/flex/FlexRow';
+import CSSGridWrap from './components/grid/CSSGridWrap';
+import SimpleIeGrid from './components/grid/SimpleIeGrid';
 export default {
 	name: 'app',
 	components: {
-		'flex-row': FlexRow
+		'flex-row': FlexRow,
+		'css-grid-wrap': CSSGridWrap,
+		'simple-ie-grid': SimpleIeGrid
 	},
 	data() {
 		return {
@@ -32,9 +38,7 @@ export default {
 @import '~_scss_/app';
 #app {
 	background-color: $LightModeBackground;
-	.container {
-		display: flex;
-	}
+	padding-top: 60px;
 }
 </style>
 <style type='text/css'>
