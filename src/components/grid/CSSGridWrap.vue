@@ -7,7 +7,7 @@
 		</div>
 		<div>
 			<input type="checkbox" name="min-width" v-model="wrapElementsTwoAtOnce"/>
-			<label for="min-width">Toggle Unique Column Widths With Wrapping 2 At Once</label>
+			<label for="min-width">Toggle Wrapping 2 At Once</label>
 		</div>
 		<div class="resize-container" ref="resize-container">
 			<div class="item">1</div>
