@@ -1,5 +1,5 @@
 <template>
-	<div class="section-container css-grid" :class="{'unique-width-wrapping': uniqueWidthWrapping, 'wrap-two-at-once': wrapElementsTwoAtOnce}">
+	<div class="section-container css-grid" :class="{ 'unique-width-wrapping': uniqueWidthWrapping }">
 		<div class="title">CSS Grid</div>
 		<div>
 			<input type="checkbox" name="min-width" v-model="uniqueWidthWrapping"/>
@@ -35,7 +35,6 @@ export default {
 	data() {
 		return {
 			uniqueWidthWrapping: false,
-			// wrapElements: false,
 			wrapElementsTwoAtOnce: false
 		}
 	},
@@ -45,13 +44,19 @@ export default {
 			// Use traditional 'for loops' for IE 11
 			for(let mutation of mutationsList) {
 				if (mutation.attributeName == 'style' &&
-					this.$refs['resize-container'].getBoundingClientRect().width <= 400  &&
-					this.wrapElementsTwoAtOnce) {
+					this.$refs['resize-container'].getBoundingClientRect().width <= 680  &&
+					this.wrapElementsTwoAtOnce && 
+					![...this.$refs['resize-container'].classList].includes('wrap-two-at-once')) {
+
 					this.$refs['resize-container'].classList.add('wrap-two-at-once');
+
 				} else if (mutation.attributeName == 'style' &&
-					this.$refs['resize-container'].getBoundingClientRect().width > 400  &&
-					this.wrapElementsTwoAtOnce) {
+					this.$refs['resize-container'].getBoundingClientRect().width > 680  &&
+					this.wrapElementsTwoAtOnce && 
+					[...this.$refs['resize-container'].classList].includes('wrap-two-at-once')) {
+
 					this.$refs['resize-container'].classList.remove('wrap-two-at-once');
+
 				}
 			}
 		}
@@ -77,10 +82,8 @@ export default {
 			grid-template-columns: repeat(auto-fit, minmax(50px, 1fr) minmax(150px, 1fr));
 		}
 	}
-	&.wrap-two-at-once {
-		.resize-container {
-			
-		}
+	.resize-container.wrap-two-at-once {
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr) minmax(150px, 1fr));
 	}
 }
 </style>
